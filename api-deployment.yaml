@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apilayer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apilayer
+  template:
+    metadata:
+      labels:
+        app: apilayer
+    spec:
+      containers:
+      - name: apilayer
+        image: mrelexay/eko-apilayer:1.0.0
+        envFrom:
+          - configMapRef:
+              name: app-config
+        env:
+          - name: DB_HOST
+            value: database
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: DB_NAME
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: DB_USER
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: DB_PASSWORD
+        ports:
+          - containerPort: 5000
