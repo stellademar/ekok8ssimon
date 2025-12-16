@@ -8,9 +8,7 @@ Lista de manifiestos para deployar, utilice Docker Hub en Windows (WSL) y Active
 Descarga los manifiestos "Manifests" en criollo, los archivos de este repo.
 
 ### Paso 3
-Abri la linea de comandos que utilices
-Posicionate en la carpeta con los manifiestos
-IMPORTANTE: Si no tenes las imágenes previas tenes que descargar con 
+IMPORTANTE: Si no tenes las imágenes previas tenes que descargar con:
 ```
 docker login
 docker pull mrelexay/eko-apilayer:1.0.0
@@ -23,6 +21,8 @@ Luego simplemente:
 kubectl apply -f .
 ```
 
+#### Paso 4
+Abri navegador y anda a http://localhost:30080/
 
 
 
